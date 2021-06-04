@@ -28,6 +28,9 @@ export const taskSlice = createSlice({
     setCount: (state, action) => {
       state.count = action.payload;
     },
+    decrementCount: (state, action) => {
+      state.count--;
+    },
     setTasks: (state, action) => {
       state.list = action.payload;
     },
@@ -82,6 +85,7 @@ export const {
   setShowForm,
   setTask,
   resetForm,
+  decrementCount,
 } = taskSlice.actions;
 
 export const selectCount = (state) => state.task.count;
@@ -202,6 +206,8 @@ export const addTask = (data) => async (dispatch, getState) => {
       oldList.push(response.data.results);
       dispatch(setTasks(oldList));
       dispatch(setCount(oldList.length));
+      dispatch(setShowForm(false));
+      dispatch(resetForm());
     }
     dispatch(setAdding(false));
   } else {
@@ -231,10 +237,7 @@ export const updateTask = (data) => async (dispatch, getState) => {
         (task) => task.id === response.data?.results.id
       );
       if (index !== -1) {
-        old[index].assigned_user = data.assigned_user;
-        old[index].task_date = data.task_date;
-        old[index].task_time = data.task_time;
-        old[index].task_msg = data.task_msg;
+        old[index] = response.data?.results;
       }
       dispatch(setTasks(old));
       dispatch(setShowForm(false));
@@ -268,6 +271,7 @@ export const deleteTask = (taskId) => async (dispatch, getState) => {
       dispatch(setTasks(old));
       dispatch(setShowForm(false));
       dispatch(resetForm());
+      dispatch(decrementCount());
     }
     dispatch(setDeleting(false));
   } else {

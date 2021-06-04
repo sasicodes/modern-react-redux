@@ -22,7 +22,7 @@ const Form = (props) => {
   const [taskMsg, setTaskMsg] = useState("");
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState("");
-  const [userId, setUserId] = useState("");
+  const [userId, setUserId] = useState(null);
   const dispatch = useDispatch();
 
   const team = useSelector(selectTeam);
