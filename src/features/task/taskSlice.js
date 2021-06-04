@@ -28,7 +28,7 @@ export const taskSlice = createSlice({
     setCount: (state, action) => {
       state.count = action.payload;
     },
-    decrementCount: (state, action) => {
+    decrementCount: (state) => {
       state.count--;
     },
     setTasks: (state, action) => {
