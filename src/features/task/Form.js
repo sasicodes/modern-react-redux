@@ -90,10 +90,10 @@ const Form = (props) => {
         <div className={styles.inputWrapper + " mr-5"}>
           <span className={styles.label}>Date</span>
           <DatePicker
-            defaultValue={moment(date, "DD-MM-YYYY")}
-            value={moment(date, "DD-MM-YYYY")}
+            defaultValue={moment(date, "YYYY-MM-DD")}
+            value={moment(date, "YYYY-MM-DD")}
             onChange={(date) => setDate(date)}
-            format={["DD-MM-YYYY"]}
+            format={["YYYY-MM-DD"]}
             className={styles.input}
             allowClear={false}
             showToday={false}

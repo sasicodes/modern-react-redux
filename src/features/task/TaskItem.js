@@ -24,10 +24,7 @@ const TaskItem = ({ task }) => {
             dispatch(
               setTask({
                 assigned_user: task.assigned_user,
-                task_date: moment(
-                  task.task_date_time_in_utc_string,
-                  "YYYY-MM-DD"
-                ),
+                task_date: moment(task.task_date).format("YYYY-MM-DD"),
                 task_time: moment(task.task_date_time_in_utc_string),
                 time_zone: 0,
                 task_msg: task.task_msg,
@@ -55,7 +52,10 @@ const TaskItem = ({ task }) => {
               updateTask({
                 assigned_user: task.assigned_user,
                 task_date: task.task_date,
-                task_time: task.task_time,
+                task_time: moment(task.task_time, "hh:mm A").diff(
+                  moment().startOf("day"),
+                  "seconds"
+                ),
                 time_zone: task.time_zone,
                 task_msg: task.task_msg,
                 is_completed: 1,
