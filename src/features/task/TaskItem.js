@@ -24,8 +24,11 @@ const TaskItem = ({ task }) => {
             dispatch(
               setTask({
                 assigned_user: task.assigned_user,
-                task_date: moment(task.task_date_time_in_utc, "YYYY-MM-DD"),
-                task_time: moment(task.task_date_time_in_utc),
+                task_date: moment(
+                  task.task_date_time_in_utc_string,
+                  "YYYY-MM-DD"
+                ),
+                task_time: moment(task.task_date_time_in_utc_string),
                 time_zone: 0,
                 task_msg: task.task_msg,
                 is_completed: 0,

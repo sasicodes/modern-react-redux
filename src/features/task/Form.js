@@ -47,7 +47,7 @@ const Form = (props) => {
           updateTask({
             assigned_user: userId,
             task_date: moment(date).format("YYYY-MM-DD"),
-            task_time: moment(time, "HH:mm A").diff(
+            task_time: moment(time, "hh:mm A").diff(
               moment().startOf("day"),
               "seconds"
             ),
@@ -62,7 +62,7 @@ const Form = (props) => {
           addTask({
             assigned_user: userId,
             task_date: moment(date).format("YYYY-MM-DD"),
-            task_time: moment(time, "HH:mm A").diff(
+            task_time: moment(time, "hh:mm A").diff(
               moment().startOf("day"),
               "seconds"
             ),
@@ -103,7 +103,7 @@ const Form = (props) => {
           <span className={styles.label}>Time</span>
           <TimePicker
             use12Hours
-            format="HH:mm A"
+            format="hh:mm A"
             className={styles.input}
             onChange={(time) => {
               setTime(time);
