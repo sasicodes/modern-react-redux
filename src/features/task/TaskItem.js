@@ -20,7 +20,7 @@ const TaskItem = ({ task }) => {
       </div>
       <div>
         <button
-          onClick={() =>
+          onClick={() => {
             dispatch(
               setTask({
                 assigned_user: task.assigned_user,
@@ -32,8 +32,9 @@ const TaskItem = ({ task }) => {
                 taskId: task.id,
                 isEdit: true,
               })
-            )
-          }
+            );
+            window.scrollTo(0, 0);
+          }}
           className={styles.edit}
           title="Edit"
         >

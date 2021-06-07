@@ -160,7 +160,7 @@ export const getTasks = () => async (dispatch) => {
     );
     if (response.data?.code === 200) {
       let array = response.data?.results;
-      array.sort((a, b) => b.modified - a.modified);
+      array.sort((a, b) => b.task_date_time_in_utc - a.task_date_time_in_utc);
       dispatch(setTasks(array));
       dispatch(setCount(array.length));
     }
@@ -203,7 +203,7 @@ export const addTask = (data) => async (dispatch, getState) => {
     });
     if (response.data?.code === 201) {
       let oldList = JSON.parse(JSON.stringify(getState().task.list));
-      oldList.push(response.data.results);
+      oldList.unshift(response.data.results);
       dispatch(setTasks(oldList));
       dispatch(setCount(oldList.length));
       dispatch(setShowForm(false));
